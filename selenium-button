@@ -8,34 +8,40 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class findElement {
 
-	public static void main(String[] args) throws InterruptedException {
-		// TODO Auto-generated method stub
+	public static void main(String[] args){
+		
 		System.setProperty("webdriver.chrome.driver","D:\\chromedriver.exe");
 		WebDriver driver=new ChromeDriver();
 		driver.navigate().to("https://letcode.in/buttons");
+		//Go to homepage and comeback to previous page
 		WebElement homebtn=driver.findElement(By.id("home"));
 		homebtn.click();
 		driver.navigate().back();
+		//Find button location
 		WebElement findlocbtn=driver.findElement(By.id("position"));
 		Point xyvalue=findlocbtn.getLocation();
 		int xval=xyvalue.getX();
 		int yval=xyvalue.getY();
 		System.out.println("x value:"+xval);
 		System.out.println("y value:"+yval);
+		//Get button background-color
 		WebElement findcolorbtn=driver.findElement(By.id("color"));
 		String color=findcolorbtn.getCssValue("background-color");
 		System.out.println("color:"+color);
+		//Get button width and Height
 		WebElement sizebtn=driver.findElement(By.id("property"));
 		int width=sizebtn.getSize().getWidth();
 		int height=sizebtn.getSize().getHeight();
 		System.out.println("Width:"+width);
 		System.out.println("Height:"+height);
+		//Check button disabled
 		WebElement buttondisabled=driver.findElement(By.id("isDisabled"));
 		Boolean btnstatus=buttondisabled.isEnabled();
 		if(btnstatus==false)
 		{
 			System.out.println("Button is Disabled");	
 		}
+		//Click and hold the button
 		WebElement holdbtn=driver.findElement(By.xpath("//h2[text()='Button Hold!']/ancestor::button"));
 		Actions chbtn=new Actions(driver);
 		chbtn.clickAndHold(holdbtn).build().perform();
